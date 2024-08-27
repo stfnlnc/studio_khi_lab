@@ -33,6 +33,7 @@
             <main>
                 {{ $slot }}
             </main>
+            @include('admin.layouts.footer')
         </div>
     </body>
 </html>
