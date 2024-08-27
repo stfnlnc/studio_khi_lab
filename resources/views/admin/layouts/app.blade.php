@@ -15,6 +15,7 @@
         <link href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap" rel="stylesheet">
         <!-- Scripts -->
         @vite(['resources/admin/css/app.css', 'resources/admin/js/app.js'])
+        <script src="https://kit.fontawesome.com/ff457e40be.js" crossorigin="anonymous"></script>
     </head>
     <body class="font-sans antialiased">
         <div class="min-h-screen bg-neutral-100 dark:bg-neutral-900">
