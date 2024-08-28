@@ -62,11 +62,25 @@ h1 {
     font-style: normal;
     font-weight: 400;
     line-height: normal;
+    z-index: 150;
+    position: relative;
 }
 
-.nav-item-active {
-    background: #0F0E0E;
-    color: #FFF;
+.nav-btn {
+    border-radius: 0.3125rem;
+    background-color: #0F0E0E;
+    z-index: 120;
+    width: 30px;
+    height: 10px;
+    position: fixed;
+    left: 0;
+    mix-blend-mode: difference;
+    filter: invert(100);
+}
+
+.nav-item:hover {
+    background: #dedede;
+    color: #000;
 }
 
 .container {

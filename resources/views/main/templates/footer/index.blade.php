@@ -7,7 +7,8 @@
 @section('title', 'Footer')
 
 @section('content')
-    <div class="nav flex flex-row gap-2.5">
+    <div class="nav-btn"></div>
+    <div class="nav flex flex-row gap-2.5 relative">
         <a href="#" class="nav-item nav-item-active">
             Home
         </a>

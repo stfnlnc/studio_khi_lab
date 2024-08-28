@@ -94,3 +94,28 @@ gsap.to('.btn-top', {
         markers: false,
     }
 })
+
+const navBtn = document.querySelector('.nav-btn')
+const navItems = document.querySelectorAll('.nav-item')
+
+console.log(navItems[1].getBoundingClientRect().left)
+
+gsap.set(navBtn, {
+    top: navItems[0].getBoundingClientRect().top,
+    left: navItems[0].getBoundingClientRect().left,
+    width: navItems[0].getBoundingClientRect().width,
+    height: navItems[0].getBoundingClientRect().height,
+})
+
+navItems.forEach((item, key) => {
+    item.addEventListener('click', () => {
+        gsap.to(navBtn, {
+            top: navItems[key].getBoundingClientRect().top,
+            left: navItems[key].getBoundingClientRect().left,
+            width: navItems[key].getBoundingClientRect().width,
+            height: navItems[key].getBoundingClientRect().height,
+            duration: 0.6,
+            ease: "power4.inOut"
+        })
+    })
+})
