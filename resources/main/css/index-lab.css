@@ -1,0 +1,98 @@
+* {
+    box-sizing: border-box;
+}
+
+@font-face {
+    font-family: PP Neue Montreal;
+    src: url('../../fonts/index/PPNeueMontreal-Medium.otf');
+}
+body {
+    font-family: "PP Neue Montreal", serif;
+    background: #FFF;
+    min-height: 100vh;
+    padding: 0;
+    margin: 0;
+    cursor: none;
+}
+.gallery {
+    position: relative;
+    width: 100%;
+    height: 100vh;
+    overflow: hidden;
+}
+
+.cards {
+    position: absolute;
+    width: 23.625rem;
+    height: 33.6875rem;
+    top: 0;
+    left: 50%;
+    transform: translate(-50%, 0);
+}
+.cards li {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    width: 23.625rem;
+    height: 33.6875rem;
+    position: absolute;
+    top: 0;
+    left: 0;
+}
+
+.cards li div {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    width: 23.625rem;
+    height: 33.6875rem;
+}
+
+.card {
+    transition: margin 0.5s ease
+}
+
+h1 {
+    color: #000;
+    font-size: 15.625rem;
+    font-style: normal;
+    font-weight: 500;
+    line-height: 15.3125rem;
+}
+
+.nav {
+    transform: translate(-50%, 0);
+}
+
+.index {
+    color: rgba(0, 0, 0, 0.25);
+    font-size: 8rem;
+    font-style: normal;
+    font-weight: 500;
+    line-height: normal;
+}
+
+.cursor {
+    position: fixed;
+    top: 5px;
+    left: 5px;
+    z-index: 100;
+    display: flex;
+    flex-direction: row;
+    gap: 0.31rem;
+    align-items: center;
+    font-size: 1rem;
+    font-style: normal;
+    font-weight: 500;
+    line-height: normal;
+    transition: opacity 0.1s ease-in-out;
+}
+
+.cursor svg {
+    width: 1.0625rem;
+    height: 1.0625rem;
+}
+
+.pointer:hover {
+    cursor: pointer
+}
