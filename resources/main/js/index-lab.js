@@ -35,20 +35,34 @@ const spacing = 0.103,    // spacing of the cards (stagger)
 let options = {
     root: document.querySelector(".cards"),
     rootMargin: "0px",
-    threshold: 0.5,
+    threshold: 0.3,
 };
 let callback = (entries) => {
     entries.forEach((entry) => {
         if(entry.isIntersecting) {
-            gsap.to(entry.target, {
-                height: "33.6875rem",
-                duration: 0.5
-            })
+            if(window.innerWidth < 1440) {
+                gsap.to(entry.target, {
+                    height: "65.6875vh",
+                    duration: 0.5
+                })
+            } else {
+                gsap.to(entry.target, {
+                    height: "33.6875vw",
+                    duration: 0.5
+                })
+            }
         } else {
-            gsap.to(entry.target, {
-                height: "24.3125rem",
-                duration: 0.5
-            })
+            if(window.innerWidth < 1440) {
+                gsap.to(entry.target, {
+                    height: "50.6875vh",
+                    duration: 0.5
+                })
+            } else {
+                gsap.to(entry.target, {
+                    height: "24.3125vw",
+                    duration: 0.5
+                })
+            }
         }
     });
 };
@@ -114,7 +128,7 @@ function buildSeamlessLoop(items, spacing) {
         i, index, item;
 
     // set initial state of items
-    gsap.set(items, {xPercent: 500, opacity: 1});
+    gsap.set(items, {xPercent: 495, opacity: 1});
 
     // now loop through and create all the animations in a staggered fashion. Remember, we must create EXTRA animations at the end to accommodate the seamless looping.
     for (i = 0; i < l; i++) {

@@ -1,14 +1,12 @@
-<!doctype html>
-<html lang="fr">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport"
-          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Index - {{ config('app.name', 'Studio Khi') }}</title>
-    @vite(['resources/main/css/app.css', 'resources/main/css/index-lab.css', 'resources/main/js/app.js', 'resources/main/js/index-lab.js'])
-</head>
-<body>
+@extends('base')
+
+@section('vite')
+    @vite(['resources/main/css/index-lab.css', 'resources/main/js/index-lab.js'])
+@endsection
+
+@section('title', 'Index')
+
+@section('content')
     @php
         $titles = [
             1 => '(01) Underwear SS23',
@@ -35,11 +33,11 @@
                 <a href="#">Photography</a>
             </div>
 
-            <div>
+            <div class="hidden-mobile">
                 <a class="underline underline-offset-8 pointer" href="mailto:hello@studiokhi.com">Send me a message</a>
             </div>
         </div>
-        <div class="fixed z-50 py-3 left-1/2 flex flex-row gap-2 nav pointer">
+        <div class="fixed z-50 py-3 left-1/2 flex flex-row gap-2 nav pointer hidden-mobile">
             <a href="#">Index,</a>
             <a class="opacity-25 hover:opacity-100" href="#">Services,</a>
             <a class="opacity-25 hover:opacity-100" href="#">Store,</a>
@@ -68,5 +66,4 @@
             <path d="M2.83335 8.5H14.1667M14.1667 8.5L9.91669 4.25M14.1667 8.5L9.91669 12.75" stroke="#191919" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
         </svg>
     </div>
-</body>
-</html>
+@endsection

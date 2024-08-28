@@ -25,5 +25,8 @@ Route::middleware('auth')->group(function () {
 Route::get('/index', function() {
     return view('main.templates.index.index');
 });
+Route::get('/footer', function() {
+    return view('main.templates.footer.index');
+});
 
 require __DIR__.'/auth.php';
