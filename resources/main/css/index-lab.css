@@ -25,10 +25,28 @@ body {
     position: absolute;
     width: 23.625vw;
     height: 33.6875vw;
-    top: 0;
+    top: 50%;
     left: 50%;
-    transform: translate(-50%, 0);
+    transform: translate(-50%, -50%);
 }
+
+.mask-left, .mask-right {
+    position: absolute;
+    width: 12vw;
+    height: 34vw;
+    top: 50%;
+    transform: translate(0, -50%);
+    background-color: #FFF;
+    z-index: 200;
+}
+
+.mask-left {
+    left: 0;
+}
+.mask-right {
+    left: 50%;
+}
+
 .cards li {
     list-style: none;
     padding: 0;
@@ -49,7 +67,8 @@ body {
 }
 
 .card {
-    transition: margin 0.5s ease
+    transition: margin 0.5s ease;
+    opacity: 0;
 }
 
 h1 {
@@ -70,6 +89,10 @@ h1 {
     font-style: normal;
     font-weight: 500;
     line-height: normal;
+}
+
+.subtitle {
+    opacity: 0;
 }
 
 .cursor {

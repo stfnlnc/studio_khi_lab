@@ -1,7 +1,8 @@
 import gsap from 'gsap';
 import {ScrollTrigger} from "gsap/ScrollTrigger";
+import {SplitText} from "gsap/SplitText";
 
-gsap.registerPlugin(ScrollTrigger);
+gsap.registerPlugin(ScrollTrigger, SplitText);
 
 let iteration = 0; // gets iterated when we scroll all the way to the end or start and wraps around - allows us to smoothly continue the playhead scrubbing in the correct direction.
 
@@ -31,56 +32,6 @@ const spacing = 0.103,    // spacing of the cards (stagger)
         end: "+=3000",
         pin: ".gallery",
     });
-
-let options = {
-    root: document.querySelector(".cards"),
-    rootMargin: "0px",
-    threshold: 0.3,
-};
-let callback = (entries) => {
-    entries.forEach((entry) => {
-        if(entry.isIntersecting) {
-            if(window.innerWidth < 1440) {
-                gsap.to(entry.target, {
-                    height: "65.6875vh",
-                    duration: 0.5
-                })
-            } else {
-                gsap.to(entry.target, {
-                    height: "33.6875vw",
-                    duration: 0.5
-                })
-            }
-        } else {
-            if(window.innerWidth < 1440) {
-                gsap.to(entry.target, {
-                    height: "50.6875vh",
-                    duration: 0.5
-                })
-            } else {
-                gsap.to(entry.target, {
-                    height: "24.3125vw",
-                    duration: 0.5
-                })
-            }
-        }
-    });
-};
-let observer = new IntersectionObserver(callback, options);
-
-const items = document.querySelectorAll('.card > div')
-const itemsCard = document.querySelectorAll('.card')
-items.forEach(item => {
-    observer.observe(item);
-})
-itemsCard.forEach(item => {
-    observer.observe(item);
-})
-
-
-
-
-
 
 function wrapForward(trigger) { // when the ScrollTrigger reaches the end, loop back to the beginning seamlessly
     iteration++;
@@ -128,7 +79,7 @@ function buildSeamlessLoop(items, spacing) {
         i, index, item;
 
     // set initial state of items
-    gsap.set(items, {xPercent: 495, opacity: 1});
+    gsap.set(items, {xPercent: 495, opacity: 0});
 
     // now loop through and create all the animations in a staggered fashion. Remember, we must create EXTRA animations at the end to accommodate the seamless looping.
     for (i = 0; i < l; i++) {
@@ -155,18 +106,133 @@ function buildSeamlessLoop(items, spacing) {
     return seamlessLoop;
 }
 
+let options = {
+    root: document.querySelector(".cards"),
+    rootMargin: "0px",
+    threshold: 0.3,
+};
+let callback = (entries) => {
+    entries.forEach((entry) => {
+        if(entry.isIntersecting) {
+            if(window.innerWidth < 1440) {
+                gsap.to(entry.target, {
+                    height: "65.6875vh",
+                    duration: 0.5
+                })
+            } else {
+                gsap.to(entry.target, {
+                    height: "33.6875vw",
+                    duration: 0.5
+                })
+            }
+        } else {
+            if(window.innerWidth < 1440) {
+                gsap.to(entry.target, {
+                    height: "50.6875vh",
+                    duration: 0.5
+                })
+            } else {
+                gsap.to(entry.target, {
+                    height: "24.3125vw",
+                    duration: 0.5
+                })
+            }
+        }
+    });
+};
+let observer = new IntersectionObserver(callback, options);
+
+const items = document.querySelectorAll('.card > div')
+const itemsCard = document.querySelectorAll('.card')
+const itemsTitle = document.querySelectorAll('.subtitle')
+
+items.forEach(item => {
+    setTimeout(() => {
+        observer.observe(item);
+    }, 1500)
+})
+itemsCard.forEach((item, key) => {
+    setTimeout(() => {
+        observer.observe(item);
+    }, 3000)
+
+    if(key !== 0) {
+        gsap.fromTo(item, {
+            opacity: 0,
+            yPercent: -100,
+        }, {
+            opacity: 1,
+            yPercent: 0,
+            duration: 1.6,
+            delay: 1.3,
+            ease: 'power4.inOut',
+        })
+    }
+})
+
+let tl = gsap.timeline()
+
+new SplitText(".title", { type: "lines" });
+new SplitText(".title", { type: "lines", linesClass: "overflow-hidden" });
+new SplitText(".index", { type: "lines" });
+new SplitText(".index", { type: "lines", linesClass: "overflow-hidden" });
+
+
+const indexChars = document.querySelectorAll('.index-chars')
+
+tl.to('.mask-right',{
+        delay: 1.2,
+        scaleX: 0,
+        transformOrigin: 'right',
+        duration: 1,
+        ease: 'power4.inOut',
+    }, 0)
+    .to('.mask-left',{
+        delay: 1.2,
+        scaleX: 0,
+        transformOrigin: 'left',
+        duration: 1,
+        ease: 'power4.inOut',
+    }, 0)
+    .to('.cards', {
+        top: 0,
+        transform: 'translate(-50%, 0)',
+        duration: 0.6,
+        ease: 'power4.out'
+    }, 2)
+    .fromTo('.title', {
+        yPercent: 100,
+        opacity: 0
+    }, {
+        yPercent: 0,
+        opacity: 1,
+        duration: 0.8,
+        ease: 'power4.out'
+    }, 2)
+    .fromTo('.index', {
+        yPercent: 100,
+        opacity: 0
+    }, {
+        yPercent: 0,
+        opacity: 1,
+        duration: 0.8,
+        ease: 'power4.out'
+    }, 2)
+    .to('.subtitle', {
+        opacity: 1,
+        duration: 0.8,
+        ease: 'power4.out'
+    }, 2)
+
 const cursor = document.querySelector('.cursor')
 const moveCursor = (e)=> {
     const mouseY = e.clientY;
     const mouseX = e.clientX;
-
     cursor.style.transform = `translate3d(${mouseX}px, ${mouseY}px, 0)`;
 }
 
 window.addEventListener('mousemove', moveCursor)
-
 const pointers = document.querySelectorAll('.pointer')
-
 pointers.forEach(pointer => {
     pointer.addEventListener('mouseover', () => {
         cursor.style.opacity = '0'
@@ -177,4 +243,3 @@ pointers.forEach(pointer => {
         cursor.style.cursor = 'none'
     })
 })
-

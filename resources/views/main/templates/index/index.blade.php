@@ -45,16 +45,18 @@
         </div>
         <div class="gallery">
             <ul class="cards">
+                <div class="mask-left"></div>
+                <div class="mask-right"></div>
                 @for($i = 1; $i <= 15; $i++)
-                <li class="card">
+                <li class="card card-{{ $i }}">
                     <div style="background-image: url({{ asset('/images/templates/index/') . '/image' . $i . '.png'}}); background-position: center; background-size: cover"></div>
-                    <p class="mt-3">{{ $titles[$i] }}</p>
+                    <p class="mt-3 subtitle">{{ $titles[$i] }}</p>
                 </li>
                 @endfor
             </ul>
         </div>
         <div class="fixed bottom-0 left-0 w-full px-5 py-4 flex flex-row justify-between items-end">
-            <h1>Index</h1>
+            <h1 class="title">Index</h1>
             <div class="index">
                 /15
             </div>
