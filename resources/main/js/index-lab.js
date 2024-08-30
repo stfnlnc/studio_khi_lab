@@ -4,6 +4,10 @@ import {SplitText} from "gsap/SplitText";
 
 gsap.registerPlugin(ScrollTrigger, SplitText);
 
+window.onresize = function(){location.reload();}
+
+window.onload = function() {
+
 let iteration = 0; // gets iterated when we scroll all the way to the end or start and wraps around - allows us to smoothly continue the playhead scrubbing in the correct direction.
 
 const spacing = 0.103,    // spacing of the cards (stagger)
@@ -106,55 +110,45 @@ function buildSeamlessLoop(items, spacing) {
     return seamlessLoop;
 }
 
+
+const items = document.querySelectorAll('.card > div')
+const itemsCard = document.querySelectorAll('.card')
+
 let options = {
     root: document.querySelector(".cards"),
     rootMargin: "0px",
-    threshold: 0.3,
+    threshold: 0.1,
 };
 let callback = (entries) => {
     entries.forEach((entry) => {
         if(entry.isIntersecting) {
+            let heightLg = "33.6875vw"
             if(window.innerWidth < 1440) {
-                gsap.to(entry.target, {
-                    height: "65.6875vh",
-                    duration: 0.5
-                })
-            } else {
-                gsap.to(entry.target, {
-                    height: "33.6875vw",
-                    duration: 0.5
-                })
+                heightLg = "65.6875vh"
             }
+                gsap.to(entry.target, {
+                    height: heightLg,
+                    duration: 0.5
+                })
         } else {
-            if(window.innerWidth < 1440) {
+                let heightSm = "22.6875vw"
+                if(window.innerWidth < 1440) {
+                    heightSm = "46.6875vh"
+                }
                 gsap.to(entry.target, {
-                    height: "50.6875vh",
+                    height: heightSm,
                     duration: 0.5
                 })
-            } else {
-                gsap.to(entry.target, {
-                    height: "24.3125vw",
-                    duration: 0.5
-                })
-            }
         }
     });
 };
 let observer = new IntersectionObserver(callback, options);
-
-const items = document.querySelectorAll('.card > div')
-const itemsCard = document.querySelectorAll('.card')
-const itemsTitle = document.querySelectorAll('.subtitle')
-
 items.forEach(item => {
-    setTimeout(() => {
-        observer.observe(item);
-    }, 1500)
+    observer.observe(item);
 })
 itemsCard.forEach((item, key) => {
-    setTimeout(() => {
-        observer.observe(item);
-    }, 3000)
+
+    observer.observe(item);
 
     if(key !== 0) {
         gsap.fromTo(item, {
@@ -164,7 +158,7 @@ itemsCard.forEach((item, key) => {
             opacity: 1,
             yPercent: 0,
             duration: 1.6,
-            delay: 1.3,
+            delay: 1.6,
             ease: 'power4.inOut',
         })
     }
@@ -177,8 +171,9 @@ new SplitText(".title", { type: "lines", linesClass: "overflow-hidden" });
 new SplitText(".index", { type: "lines" });
 new SplitText(".index", { type: "lines", linesClass: "overflow-hidden" });
 
-
-const indexChars = document.querySelectorAll('.index-chars')
+gsap.set(items[0], {y: (window.innerHeight / 2) - (items[0].getBoundingClientRect().height / 2)})
+gsap.set('.mask-left', {height: items[0].getBoundingClientRect().height + 10, width: (items[0].getBoundingClientRect().width)/2, top: (window.innerHeight / 2) - (items[0].getBoundingClientRect().height / 2)})
+gsap.set('.mask-right', {height: items[0].getBoundingClientRect().height + 10, width: (items[0].getBoundingClientRect().width)/2, top: (window.innerHeight / 2) - (items[0].getBoundingClientRect().height / 2), left: '50%'})
 
 tl.to('.mask-right',{
         delay: 1.2,
@@ -194,12 +189,11 @@ tl.to('.mask-right',{
         duration: 1,
         ease: 'power4.inOut',
     }, 0)
-    .to('.cards', {
-        top: 0,
-        transform: 'translate(-50%, 0)',
-        duration: 0.6,
+    .to(items[0], {
+        y: 0,
+        duration: 0.8,
         ease: 'power4.out'
-    }, 2)
+    })
     .fromTo('.title', {
         yPercent: 100,
         opacity: 0
@@ -222,7 +216,7 @@ tl.to('.mask-right',{
         opacity: 1,
         duration: 0.8,
         ease: 'power4.out'
-    }, 2)
+    }, 3)
 
 const cursor = document.querySelector('.cursor')
 const moveCursor = (e)=> {
@@ -243,3 +237,5 @@ pointers.forEach(pointer => {
         cursor.style.cursor = 'none'
     })
 })
+
+}

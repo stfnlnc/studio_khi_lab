@@ -25,26 +25,17 @@ body {
     position: absolute;
     width: 23.625vw;
     height: 33.6875vw;
-    top: 50%;
+    top: 0;
     left: 50%;
-    transform: translate(-50%, -50%);
+    transform: translate(-50%, 0);
 }
 
 .mask-left, .mask-right {
-    position: absolute;
     width: 12vw;
     height: 34vw;
-    top: 50%;
-    transform: translate(0, -50%);
     background-color: #FFF;
     z-index: 200;
-}
-
-.mask-left {
-    left: 0;
-}
-.mask-right {
-    left: 50%;
+    position: absolute;
 }
 
 .cards li {
@@ -124,17 +115,16 @@ h1 {
 
 @media screen and (max-width: 1440px) {
     .cards {
-        width: 28.625vw;
-        height: 33.6875vh;
+        width: 23.625vw;
+        height: 65.6875vh;
     }
     .cards li {
-        width: 28.625vw;
-        height: 33.6875vh;
+        width: 23.625vw;
+        height: 65.6875vh;
     }
-
     .cards li div {
-        width: 28.625vw;
-        height: 33.6875vh;
+        width: 23.625vw;
+        height: 65.6875vh;
     }
     .cursor {
         gap: 0.31vw;
@@ -147,19 +137,6 @@ h1 {
 }
 
 @media screen and (max-width: 1024px) {
-    .cards {
-        width: 32.625vw;
-        height: 50.6875vh;
-    }
-    .cards li {
-        width: 32.625vw;
-        height: 50.6875vh;
-    }
-
-    .cards li div {
-        width: 32.625vw;
-        height: 50.6875vh;
-    }
     h1 {
         font-size: 19.625vw;
     }
@@ -178,17 +155,16 @@ h1 {
 
 @media screen and (max-width: 874px) {
     .cards {
-        width: 45.625vw;
-        height: 50.6875vh;
+        width: 33.625vw;
+        height: 65.6875vh;
     }
     .cards li {
-        width: 45.625vw;
-        height: 50.6875vh;
+        width: 33.625vw;
+        height: 65.6875vh;
     }
-
     .cards li div {
-        width: 45.625vw;
-        height: 50.6875vh;
+        width: 33.625vw;
+        height: 65.6875vh;
     }
     h1 {
         font-size: 23.625vw;
@@ -212,17 +188,16 @@ h1 {
 
 @media screen and (max-width: 480px) {
     .cards {
-        width: 45.625vw;
-        height: 50.6875vh;
+        width: 53.625vw;
+        height: 65.6875vh;
     }
     .cards li {
-        width: 45.625vw;
-        height: 50.6875vh;
+        width: 53.625vw;
+        height: 65.6875vh;
     }
-
     .cards li div {
-        width: 45.625vw;
-        height: 50.6875vh;
+        width: 53.625vw;
+        height: 65.6875vh;
     }
     h1 {
         font-size: 26.625vw;
