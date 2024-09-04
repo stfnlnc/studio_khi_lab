@@ -263,7 +263,7 @@ h1 {
     }
 
     h1 {
-        font-size: 7.75rem;
+        font-size: 7rem;
         line-height: 5.875rem;
     }
 
@@ -284,5 +284,9 @@ h1 {
 
     .hidden-mobile {
         display: none;
+    }
+
+    .footer {
+        height: 100vh
     }
 }

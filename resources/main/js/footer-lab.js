@@ -4,9 +4,7 @@ import {ScrollSmoother} from 'gsap/ScrollSmoother';
 
 gsap.registerPlugin(ScrollTrigger, ScrollSmoother);
 
-window.onresize = function () {
-    location.reload();
-}
+    window.onresize = function(){ if(window.innerWidth > 640) {location.reload();} }
 
 window.onload = function () {
 

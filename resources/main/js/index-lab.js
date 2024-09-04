@@ -4,8 +4,6 @@ import {SplitText} from "gsap/SplitText";
 
 gsap.registerPlugin(ScrollTrigger, SplitText);
 
-window.onresize = function(){location.reload();}
-
 window.onload = function() {
 
 let iteration = 0; // gets iterated when we scroll all the way to the end or start and wraps around - allows us to smoothly continue the playhead scrubbing in the correct direction.
@@ -172,8 +170,8 @@ new SplitText(".index", { type: "lines" });
 new SplitText(".index", { type: "lines", linesClass: "overflow-hidden" });
 
 gsap.set(items[0], {y: (window.innerHeight / 2) - (items[0].getBoundingClientRect().height / 2)})
-gsap.set('.mask-left', {height: items[0].getBoundingClientRect().height + 10, width: (items[0].getBoundingClientRect().width)/2, top: (window.innerHeight / 2) - (items[0].getBoundingClientRect().height / 2)})
-gsap.set('.mask-right', {height: items[0].getBoundingClientRect().height + 10, width: (items[0].getBoundingClientRect().width)/2, top: (window.innerHeight / 2) - (items[0].getBoundingClientRect().height / 2), left: '50%'})
+gsap.set('.mask-left', {height: items[0].getBoundingClientRect().height + 10, width: (items[0].getBoundingClientRect().width)/2 + 10, top: (window.innerHeight / 2) - (items[0].getBoundingClientRect().height / 2) - 5, left: '-0.5%'})
+gsap.set('.mask-right', {height: items[0].getBoundingClientRect().height + 10, width: (items[0].getBoundingClientRect().width)/2 + 10, top: (window.innerHeight / 2) - (items[0].getBoundingClientRect().height / 2) - 5, left: '50.5%'})
 
 tl.to('.mask-right',{
         delay: 1.2,
