@@ -1,7 +1,7 @@
 @extends('base')
 
 @section('vite')
-    @vite(['resources/main/css/footer-lab.css', 'resources/main/js/footer-lab.js'])
+    @vite(['resources/main/css/clouds-lab.css', 'resources/main/js/clouds-lab.js'])
 @endsection
 
 @section('title', 'Footer')

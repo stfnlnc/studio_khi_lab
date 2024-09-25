@@ -24,9 +24,9 @@ Route::middleware('auth')->group(function () {
 
 Route::get('/index', function() {
     return view('main.templates.index.index');
-});
-Route::get('/footer', function() {
-    return view('main.templates.footer.index');
-});
+})->name('index');
+Route::get('/clouds', function() {
+    return view('main.templates.clouds.index');
+})->name('clouds');
 
 require __DIR__.'/auth.php';
