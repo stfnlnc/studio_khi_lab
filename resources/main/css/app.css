@@ -1,3 +1,25 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+@font-face {
+    font-family: Overused Grotesk;
+    src: url('../../fonts/main/overusedgrotesk-vf.ttf');
+}
+
+html, body {
+    width: 100%;
+    margin: 0;
+}
+body {
+    overflow: hidden;
+}
+
+.overused {
+    font-family: "Overused Grotesk", sans-serif;
+}
+
+.template > * {
+    width: 54rem;
+    height: 33.75rem;
+}
