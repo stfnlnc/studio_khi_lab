@@ -24,8 +24,7 @@ const colors = [
     '#DAD6EA',
     '#CDDFE6',
     '#D3E0D3',
-    '#EAE0D6',
-    '#F1F1F1'
+    '#EAE0D6'
 ];
 
 function generateRandomSvg() {
@@ -135,3 +134,51 @@ function pinItemToLastSection(item) {
 pinItemToLastSection(preloader)
 pinItemToLastSection('#scroll-down')
 pinItemToLastSection('header')
+
+const home = document.querySelector('#home')
+const index = document.querySelector('#index')
+const indexSection = document.querySelector('#index-section')
+const about = document.querySelector('#about')
+const aboutSection = document.querySelector('#about-section')
+const itemSections = document.querySelectorAll('.item-section')
+const menuItems = document.querySelectorAll('.menu-item')
+
+function showSection(item, itemSection = null) {
+        item.addEventListener('click', () => {
+            itemSections.forEach(itemSection => {
+                gsap.to(itemSection, {
+                    top: '-100%',
+                    duration: 1.4,
+                    ease: 'power4.inOut'
+                })
+            })
+            menuItems.forEach(item => {
+                item.style.opacity = '0.5'
+            })
+            if(itemSection !== null) {
+                if(itemSection.style.top === '0px') {
+                    gsap.to(itemSection, {
+                        top: '-100%',
+                        duration: 1.4,
+                        ease: 'power4.inOut'
+                    })
+                    item.style.opacity = '0.5'
+                    home.style.opacity = '1'
+                } else {
+                    gsap.to(itemSection, {
+                        top: 0,
+                        duration: 1.4,
+                        ease: 'power4.inOut'
+                    })
+                    item.style.opacity = '1'
+                }
+            } else {
+                home.style.opacity = '1'
+            }
+        })
+
+}
+
+showSection(about, aboutSection)
+showSection(index, indexSection)
+showSection(home)
